@@ -16,7 +16,7 @@
   --red-dark:    #c01818;
   --white:       #ffffff;
   --gray:        #888888;
-  --particle:    255, 255, 255;  /* used in rgba() for easy theme swap */
+  --particle:    255, 255, 255;
 }
 
 /* Light theme overrides */
@@ -65,7 +65,6 @@ body {
   margin-bottom: 12px;
 }
 
-/* Short red underline beneath each section title */
 .section-line {
   width: 50px;
   height: 3px;
@@ -74,7 +73,6 @@ body {
   margin-bottom: 60px;
 }
 
-/* Outline button (used in About) */
 .btn-outline {
   display: inline-flex;
   align-items: center;
@@ -112,27 +110,13 @@ body {
   transition: background 0.3s, backdrop-filter 0.3s;
 }
 
-/* Solid background applied by JS on scroll */
 .navbar.scrolled {
-  background: rgba(10, 10, 10, 0.85);
+  background: rgba(10, 10, 10, 0.92);
   backdrop-filter: blur(10px);
 }
 
 body.light .navbar.scrolled {
-  background: rgba(245, 245, 245, 0.85);
-}
-
-.logo-icon {
-  width: 44px;
-  height: 44px;
-  border: 2px solid var(--white);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  color: var(--white);
-  flex-shrink: 0;
+  background: rgba(245, 245, 245, 0.92);
 }
 
 .nav-links {
@@ -150,7 +134,6 @@ body.light .navbar.scrolled {
   transition: color 0.3s;
 }
 
-/* Red underline for active link */
 .nav-links a.active::after {
   content: '';
   position: absolute;
@@ -161,7 +144,6 @@ body.light .navbar.scrolled {
   border-radius: 2px;
 }
 
-/* Groups theme toggle + hamburger */
 .nav-right {
   display: flex;
   align-items: center;
@@ -184,11 +166,12 @@ body.light .navbar.scrolled {
    HAMBURGER BUTTON
  */
 .hamburger {
-  display: none;           /* shown only on mobile via media query */
+  display: none;
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
   padding: 4px;
+  z-index: 101;
 }
 
 .hamburger span {
@@ -200,24 +183,36 @@ body.light .navbar.scrolled {
   transition: transform 0.3s, opacity 0.3s;
 }
 
+/* Hamburger → X animation */
+.hamburger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 
 /* 
    MOBILE MENU
  */
 .mobile-menu {
   position: fixed;
-  top: 72px; left: 0;
+  top: 60px; left: 0;
   width: 100%;
   background: var(--bg-alt);
   z-index: 99;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.35s ease, padding 0.35s ease;
+  border-bottom: 1px solid var(--border);
 }
 
 .mobile-menu.open {
   max-height: 400px;
-  padding: 16px 0;
+  padding: 8px 0;
 }
 
 .mobile-menu ul {
@@ -228,18 +223,23 @@ body.light .navbar.scrolled {
 
 .mobile-menu a {
   display: block;
-  padding: 14px 32px;
+  padding: 14px 28px;
   color: var(--white);
   text-decoration: none;
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 500;
   border-bottom: 1px solid var(--border);
   transition: color 0.2s, padding-left 0.2s;
 }
 
-.mobile-menu a:hover {
+.mobile-menu a:hover,
+.mobile-menu a.active {
   color: var(--red);
-  padding-left: 40px;
+  padding-left: 36px;
+}
+
+.mobile-menu ul li:last-child a {
+  border-bottom: none;
 }
 
 
@@ -408,7 +408,6 @@ body.light .navbar.scrolled {
   color: var(--white);
 }
 
-/* 2x2 stats grid */
 .about-stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -578,9 +577,9 @@ body.light .navbar.scrolled {
 }
 
 
-
-/* CONTACT SECTION  */
-
+/* 
+   CONTACT SECTION
+ */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1.4fr;
@@ -616,7 +615,6 @@ body.light .navbar.scrolled {
   text-align: center;
 }
 
-/* Form layout */
 .contact-form {
   display: flex;
   flex-direction: column;
@@ -710,21 +708,154 @@ body.light .navbar.scrolled {
 }
 
 
-/* Mobile */
+/* =============================================
+   TABLET  (max-width: 900px)
+   ============================================= */
+@media (max-width: 900px) {
+
+  /* Hide desktop nav links, show hamburger */
+  .nav-links { display: none; }
+  .hamburger { display: flex; }
+
+  .navbar {
+    padding: 14px 24px;
+  }
+
+  /* Home section — stack vertically */
+  .shawn-content {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    padding: 100px 32px 40px;
+    gap: 32px;
+    text-align: center;
+  }
+
+  .shawn-text {
+    align-items: center;
+  }
+
+  .shawn-photo {
+    width: 220px;
+    height: 220px;
+  }
+
+  /* About — single column */
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  /* Skills — 2 columns on tablet */
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Projects — 2 columns on tablet */
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Contact — single column */
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .container {
+    padding: 0 32px;
+  }
+}
+
+
+/* =============================================
+   MOBILE  (max-width: 600px)
+   ============================================= */
 @media (max-width: 600px) {
-  .navbar { padding: 12px 16px; }
 
-  .shawn-content { padding: 80px 20px 0; gap: 24px; }
-  .shawn-text h1 { font-size: clamp(26px, 7vw, 36px); }
-  .shawn-photo   { width: 160px; height: 160px; }
+  .navbar {
+    padding: 12px 16px;
+  }
 
-  .btn-contact  { padding: 11px 28px; font-size: 14px; }
-  .social-links { gap: 16px; }
+  /* Home */
+  #shawn {
+    height: 100svh;
+  }
 
-  .container   { padding: 0 20px; }
-  .section     { padding: 72px 0; }
+  .shawn-content {
+    padding: 80px 20px 32px;
+    gap: 24px;
+  }
 
-  .about-stats   { grid-template-columns: 1fr 1fr; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .form-row      { grid-template-columns: 1fr; }
+  .shawn-text h1 {
+    font-size: clamp(30px, 8vw, 42px);
+  }
+
+  .shawn-photo {
+    width: 180px;
+    height: 180px;
+  }
+
+  .btn-contact {
+    padding: 11px 28px;
+    font-size: 14px;
+  }
+
+  .social-links {
+    gap: 20px;
+    justify-content: center;
+  }
+
+  /* Sections */
+  .container {
+    padding: 0 20px;
+  }
+
+  .section {
+    padding: 72px 0;
+  }
+
+  .section-line {
+    margin-bottom: 40px;
+  }
+
+  /* About */
+  .about-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .stat-card {
+    padding: 20px 12px;
+  }
+
+  .stat-number {
+    font-size: 28px;
+  }
+
+  /* Skills — single column */
+  .skills-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* Projects — single column */
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Contact form */
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .btn-send {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 20px 16px;
+    font-size: 13px;
+  }
 }
