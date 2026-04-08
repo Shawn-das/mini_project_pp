@@ -1,56 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Shawn Das Shachin — Frontend Developer portfolio"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Shawn Das Shachin — Frontend Developer portfolio" />
   <title>Shawn Das Shachin</title>
-
   <link rel="stylesheet" href="style.css" />
-  <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet"/> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
+
 <body>
 
   <!-- NAVBAR -->
   <nav class="navbar">
-
-    <!-- Desktop nav links -->
     <ul class="nav-links">
-      <li><a href="#shawn"    class="active">Home</a></li>
+      <li><a href="#shawn" class="active">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-
-    <!-- Right side: theme toggle + hamburger -->
-    <div class="nav-right">
-      <div class="theme-toggle"><i class="fas fa-moon"></i></div>
-      <div class="hamburger" id="hamburger">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-    </div>
-
   </nav>
 
-  <!-- Mobile slide-down menu -->
-  <div class="mobile-menu" id="mobileMenu">
-    <ul>
-      <li><a href="#shawn"    class="mobile-link">Home</a></li>
-      <li><a href="#about"    class="mobile-link">About</a></li>
-      <li><a href="#skills"   class="mobile-link">Skills</a></li>
-      <li><a href="#projects" class="mobile-link">Projects</a></li>
-      <li><a href="#contact"  class="mobile-link">Contact</a></li>
-    </ul>
-  </div>
 
-
-  <!-- HOME SECTION  -->
+  <!-- HOME SECTION -->
   <section id="shawn">
-    <canvas id="particleCanvas"></canvas>
+    <!-- <canvas id="particleCanvas"></canvas> -->
 
     <div class="shawn-content">
 
@@ -62,15 +38,15 @@
         </h1>
         <a href="#contact" class="btn-contact">Contact Me</a>
         <div class="social-links">
-          <a href="https://www.linkedin.com/in/shawndas"     aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://github.com/Shawn-das"             aria-label="GitHub"   target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/shawndas" aria-label="LinkedIn" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/Shawn-das" aria-label="GitHub" target="_blank"><i class="fab fa-github"></i></a>
           <a href="https://www.facebook.com/shawn.das.81525" aria-label="Facebook" target="_blank"><i class="fab fa-facebook-f"></i></a>
         </div>
       </div>
 
       <div class="shawn-photo-wrapper">
         <div class="shawn-photo">
-          <img src="assets/shawn.JPG" alt="Shawn" class="profile-img" id="profileImg"/>
+          <img src="assets/shawn.JPG" alt="Shawn" class="profile-img" id="profileImg" />
           <div class="photo-placeholder" id="photoPlaceholder">
             <i class="fas fa-user"></i>
           </div>
@@ -81,9 +57,8 @@
   </section>
 
 
-  <!-- ABOUT SECTION  -->
+  <!-- ABOUT SECTION -->
   <section id="about" class="section">
-
     <div class="container">
 
       <h2 class="section-title">About <span class="highlight">Me</span></h2>
@@ -102,18 +77,21 @@
             smooth and intuitive. When I'm not coding, you'll find me exploring new
             design trends or tinkering with side projects.
           </p>
-          <a href="#" class="btn-outline">Download CV <i class="fas fa-download"></i></a>
+          <a href="education.html" class="btn-outline">Educational Background<i class="fas fa-graduation-cap"></i></a>
         </div>
-      
+
         <div class="about-stats">
           <div class="stat-card">
             <span class="stat-number">1+</span>
             <span class="stat-label">Year Experience</span>
           </div>
-          <div class="stat-card">
+          <a href="#projects" class="stat-card-link"> 
+            <div class="stat-card">
             <span class="stat-number">3</span>
             <span class="stat-label">Projects Done</span>
           </div>
+          </a>
+          
         </div>
 
       </div>
@@ -136,9 +114,7 @@
             <span class="tag">HTML5</span>
             <span class="tag">CSS3</span>
             <span class="tag">JavaScript</span>
-            <!-- <span class="tag">React</span>
-            <span class="tag">Tailwind CSS</span>
-            <span class="tag">Responsive Design</span> -->
+            <span class="tag">Flutter</span>
           </div>
         </div>
 
@@ -146,9 +122,9 @@
           <h3 class="skill-group-title"><i class="fas fa-server"></i> Backend</h3>
           <div class="skill-tags">
             <span class="tag">Node.js</span>
-            <!-- <span class="tag">Express</span> -->
             <span class="tag">REST APIs</span>
             <span class="tag">MongoDB</span>
+            <span class="tag">Supabase</span>
           </div>
         </div>
 
@@ -189,6 +165,36 @@
           </div>
         </div>
 
+        <div class="project-card">
+          <div class="project-top">
+            <i class="fas fa-folder-open project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/Shawn-das/Eduguide.git" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="#" target="_blank" aria-label="Live"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+          <h3 class="project-name">Eduguide</h3>
+          <p class="project-desc">Smart solution for students to make their study abroad dream easier. Built with Flutter and Supabase as a backend.</p>
+          <div class="project-tags">
+            <span>Flutter</span><span>Supabase</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-top">
+            <i class="fas fa-folder-open project-icon"></i>
+            <div class="project-links">
+              <a href="https://github.com/Shawn-das/Mess-Manager.git" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+              <a href="#" target="_blank" aria-label="Live"><i class="fas fa-external-link-alt"></i></a>
+            </div>
+          </div>
+          <h3 class="project-name">Mess Manager</h3>
+          <p class="project-desc">an application that manages hostel or mess meal operations like schedules, attendance, and billing. It automates records and helps reduce manual work efficiently. Built with Flutter and Supabase as a backend.</p>
+          <div class="project-tags">
+            <span>Flutter</span><span>Supabase</span>
+          </div>
+        </div>
+
       </div>
     </div>
   </section>
@@ -224,22 +230,24 @@
           </div>
         </div>
 
-        <div class="contact-form">
+        <form class="contact-form">
           <div class="form-row">
-            <input type="text"  class="form-input" placeholder="Your Name" />
-            <input type="email" class="form-input" placeholder="Your Email" />
+            <input type="text" class="form-input" placeholder="Your Name" name="name">
+            <input type="email" class="form-input" placeholder="Your Email" name="email">
           </div>
-          <input type="text" class="form-input" placeholder="Subject" />
-          <textarea class="form-input form-textarea" placeholder="Your Message" rows="5"></textarea>
-          <button class="btn-send">Send Message <i class="fas fa-paper-plane"></i></button>
-        </div>
+          <input type="text" class="form-input" placeholder="Subject" name="subject">
+          <textarea class="form-input form-textarea" placeholder="Your Message" rows="5" name="message"></textarea>
+          <button class="btn-send" type="submit">
+            Send Message <i class="fas fa-paper-plane"></i>
+          </button>
+        </form>
 
       </div>
     </div>
   </section>
 
 
-  <!--  FOOTER  -->
+  <!-- FOOTER -->
   <footer class="footer">
     <p>Designed & Built by <span class="highlight">Shawn Das Shachin</span></p>
   </footer>
@@ -247,4 +255,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
