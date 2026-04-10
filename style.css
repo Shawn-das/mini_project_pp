@@ -1,4 +1,3 @@
-
 :root {
   --bg:       #0a0a0a;
   --bg-alt:   #111111;
@@ -16,7 +15,7 @@ body {
   font-family: 'Poppins', sans-serif;
   background: var(--bg);
   color: var(--white);
-  overflow-x: hidden;
+  /* overflow-x: hidden; */
 }
 
 
@@ -77,6 +76,8 @@ body {
 
 /*
    NAVBAR
+   Scroll effect: CSS scroll-driven animation fades in background
+   once the user scrolls past the hero.
 */
 .navbar {
   position: fixed;
@@ -88,11 +89,6 @@ body {
   align-items: center;
   justify-content: center;
   padding: 16px 48px;
-  background: transparent;
-  transition: background 0.3s, backdrop-filter 0.3s;
-}
-
-.navbar.scrolled {
   background: rgba(10, 10, 10, 0.92);
   backdrop-filter: blur(10px);
 }
@@ -112,7 +108,26 @@ body {
   transition: color 0.3s;
 }
 
-.nav-links a.active::after {
+/*
+  Active nav highlight: uses :target on sections.
+  Each section, when targeted via hash, signals its corresponding
+  nav link via the :has() selector.
+*/
+body:has(#shawn:target) .nav-links a[href="#shawn"],
+body:not(:has(:target)) .nav-links a[href="#shawn"],
+body:has(#about:target) .nav-links a[href="#about"],
+body:has(#skills:target) .nav-links a[href="#skills"],
+body:has(#projects:target) .nav-links a[href="#projects"],
+body:has(#contact:target) .nav-links a[href="#contact"] {
+  color: var(--red);
+}
+
+body:has(#shawn:target) .nav-links a[href="#shawn"]::after,
+body:not(:has(:target)) .nav-links a[href="#shawn"]::after,
+body:has(#about:target) .nav-links a[href="#about"]::after,
+body:has(#skills:target) .nav-links a[href="#skills"]::after,
+body:has(#projects:target) .nav-links a[href="#projects"]::after,
+body:has(#contact:target) .nav-links a[href="#contact"]::after {
   content: '';
   position: absolute;
   bottom: -4px;
@@ -125,6 +140,17 @@ body {
 
 .nav-links a:hover {
   color: var(--red);
+}
+
+.nav-links a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--red);
+  border-radius: 2px;
 }
 
 
@@ -159,7 +185,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 24px;
-  animation: fadeInLeft 0.9s ease both;
 }
 
 .shawn-text h1 {
@@ -173,12 +198,8 @@ body {
 
 .shawn-text h1 .line {
   display: block;
-  opacity: 0;
-  animation: slideUp 0.7s ease forwards;
 }
-.line:nth-child(1) { animation-delay: 0.2s; }
-.line:nth-child(2) { animation-delay: 0.4s; }
-.line:nth-child(3) { animation-delay: 0.6s; }
+
 
 .btn-contact {
   display: inline-block;
@@ -190,8 +211,6 @@ body {
   padding: 13px 36px;
   border-radius: 4px;
   width: fit-content;
-  opacity: 0;
-  animation: slideUp 0.7s ease 0.85s forwards;
   transition: background 0.3s, transform 0.2s;
 }
 
@@ -203,8 +222,6 @@ body {
 .social-links {
   display: flex;
   gap: 20px;
-  opacity: 0;
-  animation: slideUp 0.7s ease 1s forwards;
 }
 
 .social-links a {
@@ -222,8 +239,6 @@ body {
 
 .shawn-photo-wrapper {
   flex: 0 0 auto;
-  opacity: 0;
-  animation: fadeInRight 0.9s ease 0.5s forwards;
 }
 
 .shawn-photo {
@@ -234,26 +249,20 @@ body {
   overflow: hidden;
   border: 4px solid rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 40px rgba(224, 32, 32, 0.25), 0 0 80px rgba(0, 0, 0, 0.6);
-  background: #111;
+  /* CSS fallback background if image fails to load */
+  background: linear-gradient(160deg, #1c1c1c, #111);
 }
 
+/*
+  Profile image: always block; browser shows background if image 404s.
+  No JS needed — broken images simply reveal the dark gradient background.
+*/
 .profile-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center 75%;
-  display: none;
-}
-
-.photo-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(160deg, #1c1c1c, #111);
-  color: rgba(255, 255, 255, 0.15);
-  font-size: 80px;
+  display: block;
 }
 
 
@@ -306,9 +315,10 @@ body {
   border-color: var(--red);
 }
 
-.stat-card-link{
+.stat-card-link {
   text-decoration: none;
 }
+
 .stat-number {
   font-size: 36px;
   font-weight: 800;
@@ -321,7 +331,7 @@ body {
   font-weight: 500;
 }
 
-/* education.css */
+/* education page styles */
 
 .edu-hero {
   padding: 140px 0 70px;
@@ -472,7 +482,6 @@ body {
   .tl-card:hover { transform: none; }
   .edu-hero { padding: 120px 0 50px; }
 }
-
 
 
 /*
@@ -669,6 +678,7 @@ body {
   font-size: 14px;
   outline: none;
   transition: border-color 0.3s;
+  box-sizing: border-box;
 }
 
 .form-input::placeholder {
@@ -707,6 +717,7 @@ body {
 }
 
 
+
 /*
    FOOTER
 */
@@ -718,23 +729,3 @@ body {
   font-size: 14px;
   border-top: 1px solid var(--border);
 }
-
-
-/*
-   ANIMATIONS
-*/
-@keyframes fadeInLeft {
-  from { opacity: 0; transform: translateX(-40px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes fadeInRight {
-  from { opacity: 0; transform: translateX(40px); }
-  to   { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes slideUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
